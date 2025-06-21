@@ -3,9 +3,9 @@ import pygame
 # Base class for game objects
 class CircleShape(pygame.sprite.Sprite):
     def __init__(self, x, y, radius):
-        # we will be using this later
-        if hasattr(self, "containers"):
-            super().__init__(self.containers)
+        # Automatically add to groups if containers are defined
+        if hasattr(self.__class__, "containers"):
+            super().__init__(*self.__class__.containers)
         else:
             super().__init__()
 
@@ -14,9 +14,9 @@ class CircleShape(pygame.sprite.Sprite):
         self.radius = radius
 
     def draw(self, screen):
-        # sub-classes must override
+        # Subclasses must override
         pass
 
     def update(self, dt):
-        # sub-classes must override
+        # Subclasses must override
         pass

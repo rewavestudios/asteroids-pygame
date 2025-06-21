@@ -8,24 +8,37 @@ def main():
     clock = pygame.time.Clock()
     dt = 0  # Delta time (in seconds)
 
+    # Sprite groups
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+
+    Player.containers = updatable, drawable
+
     # Create player in the center of the screen
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
-    while True:
+    running = True
+    while running:
         # Event handling - quit if window closed
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                return
-            
-        # Update game state
-        player.update(dt)
+                running = False
+        
+        # Update all updatable sprites
+        updatable.update(dt)
 
         screen.fill((0, 0, 0))  # Fill screen with black
-        player.draw(screen) # Draw the player
+
+        # Draw all drawable sprites
+        for sprite in drawable:
+            sprite.draw(screen)
+            
         pygame.display.flip()   # Update the display
 
         # Limit to 60 FPS and get delta time
         dt = clock.tick(60) / 1000
+
+    pygame.quit()
 
 if __name__ == "__main__":
     main()
