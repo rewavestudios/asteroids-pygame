@@ -35,6 +35,13 @@ def main():
         # Update all updatable sprites
         updatable.update(dt)
 
+        # Collision detection: Check if player collides with any asteroid
+        for asteroid in asteroids:
+            if player.collides_with(asteroid):
+                print("Game over!")
+                pygame.quit()
+                exit()  # Or use sys.exit() if you've imported sys
+                
         screen.fill((0, 0, 0))  # Fill screen with black
 
         # Draw all drawable sprites
@@ -45,6 +52,8 @@ def main():
 
         # Limit to 60 FPS and get delta time
         dt = clock.tick(60) / 1000
+
+
 
     pygame.quit()
 
