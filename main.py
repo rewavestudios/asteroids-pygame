@@ -3,6 +3,7 @@ from constants import *
 from player import Player
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
+from shot import Shot  # Import Shot class
 
 def main():
     pygame.init()  # Initialize pygame
@@ -14,11 +15,13 @@ def main():
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
     asteroids = pygame.sprite.Group()
+    shots = pygame.sprite.Group()
 
     # Containers
-    Player.containers = updatable, drawable
-    Asteroid.containers = asteroids, updatable, drawable
+    Player.containers = (updatable, drawable)
+    Asteroid.containers = (asteroids, updatable, drawable)
     AsteroidField.containers = updatable
+    Shot.containers = (shots, updatable, drawable)
 
     # Create player in the center of the screen and the Asteroid Field
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
@@ -52,8 +55,6 @@ def main():
 
         # Limit to 60 FPS and get delta time
         dt = clock.tick(60) / 1000
-
-
 
     pygame.quit()
 
