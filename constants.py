@@ -12,3 +12,5 @@ PLAYER_SPEED = 200  # units per second
 
 SHOT_RADIUS = 5
 PLAYER_SHOOT_SPEED = 500
+PLAYER_SHOOT_COOLDOWN = 0.3 # seconds
+
