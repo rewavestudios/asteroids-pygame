@@ -45,6 +45,11 @@ def main():
                 pygame.quit()
                 exit()  # Or use sys.exit() if you've imported sys
                 
+            for shot in shots:  # Collision detection: Bullets vs Asteroids
+                if asteroid.collides_with(shot):
+                    asteroid.kill()
+                    shot.kill()
+                
         screen.fill((0, 0, 0))  # Fill screen with black
 
         # Draw all drawable sprites
