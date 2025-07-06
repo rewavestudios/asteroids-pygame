@@ -47,7 +47,7 @@ def main():
                 
             for shot in shots:  # Collision detection: Bullets vs Asteroids
                 if asteroid.collides_with(shot):
-                    asteroid.kill()
+                    asteroid.split()
                     shot.kill()
                 
         screen.fill((0, 0, 0))  # Fill screen with black
